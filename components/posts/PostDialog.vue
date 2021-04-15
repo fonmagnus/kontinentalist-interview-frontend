@@ -3,10 +3,11 @@
     <v-dialog
       v-model="showDialog"
       width="500"
+      persistent
     >
       <v-card>
         <v-card-title class="headline grey lighten-2">
-          Create New Post
+        {{id ? "Edit Post" : "Create Post"}}
         </v-card-title>
 
         <v-card-text class="mt-5">
@@ -36,6 +37,13 @@
         <v-divider></v-divider>
 
         <v-card-actions>
+          <v-btn
+            color="orange"
+            outlined
+            @click="toggleShowDialog"
+          >
+            Cancel
+          </v-btn>
           <v-spacer></v-spacer>
           <v-btn
             color="orange"
@@ -58,6 +66,15 @@ export default {
       type: Boolean,
       required: true
     },
+    id: {
+      type: Number,
+    },
+    title: {
+      type: String,
+    },
+    content: {
+      type: String,
+    },
   },
   data() {
     return {
@@ -67,8 +84,8 @@ export default {
   computed: {
     inputForm: function() {
       return {
-        title: '',
-        content: '',
+        title: this.title,
+        content: this.content,
         rules: {
           required: value => !!value || 'Required.',
         },
@@ -80,13 +97,23 @@ export default {
       this.$emit('toggleShowDialog')
     },
     submit() {
-      this.$axios.post(endpoint.CREATE_POST, {
-        title: this.inputForm.title,
-        content: this.inputForm.content
-      }).then(() => {
-        this.toggleShowDialog()
-        location.reload()
-      })
+      if (!this.id) {
+        this.$axios.post(endpoint.CREATE_POST, {
+          title: this.inputForm.title,
+          content: this.inputForm.content
+        }).then(() => {
+          this.toggleShowDialog()
+          location.reload()
+        })
+      } else {
+        this.$axios.put(`${endpoint.UPDATE_POST}/${this.id}`, {
+          title: this.inputForm.title,
+          content: this.inputForm.content
+        }).then(() => {
+          this.toggleShowDialog()
+          location.reload()
+        })
+      }
     }
   }
 }

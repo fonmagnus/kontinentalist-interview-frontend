@@ -6,4 +6,6 @@ export const endpoint = {
 
   POSTS: `${process.env.api_url}/posts/get`,
   CREATE_POST: `${process.env.api_url}/posts/create`,
+  DELETE_POST: `${process.env.api_url}/posts/delete`,
+  UPDATE_POST: `${process.env.api_url}/posts/update`,
 }

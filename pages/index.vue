@@ -22,7 +22,7 @@ export default {
   mounted() {
     if (this.user.email){
       this.$axios.setHeader('Authorization', 'JWT ' + this.accessToken)
-      this.$router.push('/home')
+      // this.$router.push('/home')
     }
   }
 }
