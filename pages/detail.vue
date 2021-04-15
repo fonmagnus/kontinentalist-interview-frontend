@@ -12,7 +12,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      accessToken: 'getAccessToken'
+      accessToken: 'getAccessToken',
+      user: 'getUser'
     }),
   },
   data() {
@@ -21,6 +22,9 @@ export default {
     }
   },
   mounted () {
+    if(!this.user.email) {
+      this.$router.push('/')
+    }
     this.$axios.setHeader('Authorization', 'JWT ' + this.accessToken)
     this.$axios.get(`${endpoint.POSTS}/${this.$route.query.postId}`).then((response) => {
       this.post = response.data

@@ -32,6 +32,9 @@ export default {
     PostDialog,
   },
   mounted() {
+    if(!this.user.email) {
+      this.$router.push('/')
+    }
     this.$axios.setHeader('Authorization', 'JWT ' + this.accessToken)
     this.$axios.get(endpoint.POSTS).then((response) => {
       this.posts = response.data

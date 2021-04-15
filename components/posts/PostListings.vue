@@ -4,6 +4,7 @@
         v-for="(post, i) in posts"
         :key="post.id"
         class="pa-3 ma-4"
+        width="350"
       >
         <v-card-subtitle>
           Posted by {{post.posted_by.email}}
