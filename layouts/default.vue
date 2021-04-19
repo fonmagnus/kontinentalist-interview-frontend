@@ -9,16 +9,18 @@
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
-          :to="item.to"
+          :to="display(item) ? item.to : ''"
           router
           exact
         >
           <v-list-item-action v-if="display(item)">
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
+          <div v-else></div>
           <v-list-item-content v-if="display(item)">
             <v-list-item-title v-text="item.title" />
           </v-list-item-content>
+          <div v-else></div>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>

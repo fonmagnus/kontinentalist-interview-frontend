@@ -1,17 +1,17 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
-      <LoginBox/>
+      <AccountBox/>
     </v-col>
   </v-row>
 </template>
 
 <script>
-import LoginBox from '~/components/LoginBox.vue'
+import AccountBox from '~/components/AccountBox.vue'
 import { mapGetters } from "vuex";
 export default {
   components: {
-    LoginBox,
+    AccountBox,
   },
   computed: {
     ...mapGetters({
