@@ -90,6 +90,7 @@ export default {
         confirmButtonText: 'Yes, delete it!',
         confirmButtonColor: 'orange',
         cancelButtonText: 'No, cancel!',
+        reverseButtons: true,
       }).then((result) => {
         if(result.value) {
           this.$axios.delete(`${endpoint.DELETE_POST}/${post.id}`)
